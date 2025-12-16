@@ -8,7 +8,6 @@ import "../styles/Landing.css";
 import { useState, useEffect } from "react";
 
 const Landing = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
 
     // refs
     const pointerTextRef = useRef(null);
