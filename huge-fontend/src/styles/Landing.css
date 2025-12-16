@@ -1,0 +1,64 @@
+.box-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+.inner-box {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: animate 3s linear;
+  z-index: 10000;
+}
+
+.box {
+  height: 150px;
+  width: 150px;
+}
+
+#right {
+  right: 75px;
+  transform: rotateY(-90deg);
+}
+
+#left {
+  left: 75px;
+  transform: rotateY(90deg);
+}
+
+#back {
+  transform: translateZ(-75px) rotateY(180deg);
+}
+
+#front {
+  transform: translateZ(75px);
+}
+
+#bottom {
+  top: 75px;
+  transform: rotateX(90deg);
+}
+
+#top {
+  bottom: 75px;
+  transform: rotateX(-90deg);
+  border: none;
+}
+
+@keyframes animate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+

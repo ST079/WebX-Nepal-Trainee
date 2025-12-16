@@ -1,0 +1,74 @@
+/* form */
+.input-box {
+  position: relative;
+  padding: 10px 0;
+  font-size: 15px;
+  > input,
+  textarea {
+    border: 1px solid #fff;
+    background-color: transparent;
+    width: 100%;
+    resize: none;
+    padding: 25px;
+  }
+  > span {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    font-size: 1.3rem;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.input-box input:focus ~ span,
+.input-box textarea:focus ~ span,
+.input-box input:valid ~ span,
+.input-box textarea:valid ~ span{
+  transform: translateY(-50px) translateX(-20px);
+  font-size: 1rem;
+  color: #FF0091;
+
+}
+
+.input-box input:focus, textarea:focus{
+  outline: none;
+  border: 3px solid green;
+}
+
+
+.underline-hover,.underline-hover-2 {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-hover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.underline-hover:hover::before {
+  width: 0%;
+}
+
+
+.underline-hover-2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.underline-hover-2:hover::before {
+  width: 100%;
+}
