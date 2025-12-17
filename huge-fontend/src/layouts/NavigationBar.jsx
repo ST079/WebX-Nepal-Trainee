@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useGSAP } from "@gsap/react";
@@ -7,9 +7,11 @@ import { useRef } from "react";
 import "../styles/Form.css";
 
 const NavigationBar = () => {
+  gsap.registerPlugin(ScrollTrigger);
   const [showMenu, setShowMenu] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const navRef = useRef(null);
+  const menuBtn = useRef(null);
 
   // menu
   const toggleMenu = () => {
@@ -26,14 +28,41 @@ const NavigationBar = () => {
       color: showMenu ? "white" : "black",
     });
 
-    gsap.to("#nav-links", {
-      x: showMenu ? 0 : -navRef.offsetWidth,
+    const navLinks = document.getElementById("nav-links");
+    if (!navLinks) return;
+    gsap.to(navLinks, {
+      x: showMenu ? 0 : -navRef.current.offsetWidth,
       duration: 0.8,
       ease: "power3.out",
     });
   }, [showMenu]);
 
-  //form
+  useGSAP(() => {
+    gsap.to(menuBtn.current, {
+      backgroundColor: "black",
+      color: "white",
+      scrollTrigger: {
+        trigger: "#menu-btn",
+        scroller: "body",
+        markers: false,
+        start: "top top",
+        scrub: true,
+      },
+    });
+
+    gsap.to("#front-btn", {
+      backgroundColor: "black",
+      color: "white",
+      scrollTrigger: {
+        trigger: "#front-btn",
+        scroller: "body",
+        markers: false,
+        start: "top top",
+        scrub: true,
+      },
+    });
+  }, []);
+
 
   useGSAP(() => {
     const form = document.getElementById("form-container");
@@ -61,6 +90,7 @@ const NavigationBar = () => {
           <button
             className="bg-white text-black py-4 size-15 text-xl text-center cursor-pointer absolute top-0"
             id="menu-btn"
+            ref={menuBtn}
             onClick={toggleMenu}
           >
             Menu

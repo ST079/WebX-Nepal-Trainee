@@ -6,9 +6,10 @@ import img2 from "../assets/images/huge/slider2.jpg";
 import img3 from "../assets/images/huge/slider3.jpg";
 import "../styles/Landing.css";
 import { useState, useEffect } from "react";
+import { useGSAP } from "@gsap/react";
+
 
 const Landing = () => {
-
     // refs
     const pointerTextRef = useRef(null);
     const mainSectionRef = useRef(null);
@@ -40,8 +41,8 @@ const Landing = () => {
         const centerY = window.innerHeight / 2;
 
         // calculate rotation based on mouse distance from center
-        const rotateY = ((e.clientX - centerX) / centerX) * 7; // left/right rotation
-        const rotateX = -((e.clientY - centerY) / centerY) * 4; // up/down rotation
+        const rotateY = ((e.clientX - centerX) / centerX) * 5; // left/right rotation
+        const rotateX = -((e.clientY - centerY) / centerY) * 7; // up/down rotation
 
         gsap.to(boxRef.current, {
             rotationY: rotateY,
@@ -51,10 +52,9 @@ const Landing = () => {
         });
     };
 
-
-
     useEffect(() => {
         const imgBox = imgBoxRef.current;
+        if (!imgBox) return;
         const innerBox = boxRef.current;
         const images = imgBox.querySelectorAll("img");
         let interval;
@@ -97,6 +97,35 @@ const Landing = () => {
         };
     }, []);
 
+    useGSAP(() => {
+        gsap.fromTo(
+            boxRef.current,
+            {
+                scale: 0,
+                opacity: 0,
+            },
+
+            {
+                scale: 1.05,
+                opacity: 1,
+                duration: 2,
+                delay: 5.5,
+                ease: "back.out(1.7)",
+            }
+        );
+
+        gsap.to("#main-section", {
+            backgroundColor: "white",
+            scrollTrigger: {
+                trigger: "#main-section .box-container",
+                scroller: "body",
+                markers: false,
+                start : "bottom bottom",
+                end : "bottom 90%",
+                scrub: true,
+            },
+        });
+    }, []);
 
     return (
         <div

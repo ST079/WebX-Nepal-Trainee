@@ -15,6 +15,7 @@
   position: absolute;
   transform-style: preserve-3d;
   animation: animate 3s linear;
+  animation-delay: 7.5s;
   z-index: 10000;
 }
 
