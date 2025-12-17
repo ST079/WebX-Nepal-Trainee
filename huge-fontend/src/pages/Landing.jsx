@@ -7,33 +7,14 @@ import img3 from "../assets/images/huge/slider3.jpg";
 import "../styles/Landing.css";
 import { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
-
+import PointerText from "../components/PointerText";
 
 const Landing = () => {
     // refs
-    const pointerTextRef = useRef(null);
     const mainSectionRef = useRef(null);
     const boxRef = useRef(null);
     const imgBoxRef = useRef(null);
     const activeIndexRef = useRef(0);
-
-    //   pointing text handlers
-    const handleMouseEnter = () => {
-        gsap.to(pointerTextRef.current, { opacity: 1, duration: 0.2 });
-    };
-
-    const handleMouseMove = (e) => {
-        gsap.to(pointerTextRef.current, {
-            x: e.clientX + 20,
-            y: e.clientY - 80,
-            duration: 0.5,
-            ease: "power3.out",
-        });
-    };
-
-    const handleMouseLeave = () => {
-        gsap.to(pointerTextRef.current, { opacity: 0, duration: 0.2 });
-    };
 
     // box movement handler
     const boxmove = (e) => {
@@ -120,31 +101,22 @@ const Landing = () => {
                 trigger: "#main-section .box-container",
                 scroller: "body",
                 markers: false,
-                start : "bottom bottom",
-                end : "bottom 90%",
+                start: "bottom bottom",
+                end: "bottom 90%",
                 scrub: true,
             },
         });
+
+        
     }, []);
 
     return (
         <div
             className="h-screen bg-black"
             ref={mainSectionRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
         >
             {/* pointer text */}
-            <p
-                className="fixed top-0 left-0 z-0 pointer-events-none
-             border border-white p-5 text-white text-xl opacity-0 trasition-delay-200"
-                id="pointer-text"
-                ref={pointerTextRef}
-            >
-                Scroll to explore
-                <i className="fa-solid fa-arrow-down" style={{ color: "#FF0091" }}></i>
-            </p>
+            <PointerText text="Scroll to explore" />
 
             <section
                 className="w-full h-screen bg-black "

@@ -1,0 +1,19 @@
+/* In index.css or a dedicated fonts.css file */
+
+@font-face {
+  font-family: "Monument Grotesk";
+  src: url("./assets/fonts/MonumentGrotesk-Regular.woff2") format("woff2"),
+       url("./assets/fonts/MonumentGrotesk-Regular.woff") format("woff");
+  font-weight: 400; /* Corresponds to 'Regular' */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Monument Grotesk";
+  src: url("./assets/fonts/MonumentGrotesk-Bold.woff2") format("woff2"),
+       url("./assets/fonts/MonumentGrotesk-Bold.woff") format("woff");
+  font-weight: 700; /* Corresponds to 'Bold' */
+  font-style: normal;
+}
+
+

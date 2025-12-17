@@ -7,7 +7,9 @@ const About = () => {
     gsap.registerPlugin(ScrollTrigger);    
 
     return (
-        <div className='h-screen'>About</div>
+        <div className='h-screen'>
+            <h1 className='text-9xl pt-40'>Who We Are -</h1>
+        </div>
     )
 }
 
