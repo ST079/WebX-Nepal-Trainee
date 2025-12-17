@@ -3,9 +3,28 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import logo from "/logo.png";
 import "../styles/Loader.css";
-const Loader = () => {
-
-
+const Loader = ({setLoading}) => {
+  const counter = { value: 0 };
+  useGSAP(() => {
+    const display = document.getElementById("counter");
+    const loader = document.getElementById("loader"); 
+    gsap.to(counter, {
+      value: 100,
+      duration: 2,
+      delay: 1, // 5 seconds
+      ease: "linear",
+      onUpdate: () => {
+        display.textContent = Math.round(counter.value) + "%";
+        loader.style.overflow = "hidden";
+      },
+      onComplete: () => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+        
+      }
+    });
+  }, []);
   return (
     <div
       className="loader-container flex justify-center h-screen w-full"

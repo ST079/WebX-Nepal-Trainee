@@ -7,16 +7,10 @@ import Loader from "./components/Loader.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [loading]);
 
   return (
     <div>
-      {loading ? <Loader /> : (
+      {loading ? <Loader setLoading={setLoading} /> : (
         <Routes>
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Landing />} />
